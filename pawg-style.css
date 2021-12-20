@@ -1,0 +1,43 @@
+html {
+    font-family: lato, sans-serif;
+}
+
+body {
+	font-family: Tahoma, Verdana, sans-serif;
+}
+
+.banner {
+    background-color: CornflowerBlue;
+    padding: 50px 0px 10px 50px;
+	margin: -40px -10px 5px -10px;
+}
+
+ul {
+    display: block;
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    min-width: 535px;
+}
+
+.nav-bar {
+
+}
+
+li {
+    display: inline;
+    padding: 8px;
+}
+
+li:hover {
+    background-color: #74A5FD;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
