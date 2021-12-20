@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Initiative Tracker</title>
+	<link rel="stylesheet" href="it-style.css">
+
+</head>
+
+<body>
+
+<header>
+	<div class="Banner" id="Banner1">
+		<h2 id="title">Initiative Tracker</h2>
+	</div>
+</header>
+	<div class="halfpage">
+		<div id="halfpage-left">
+			<div id="form-header">
+				<div id="char-num-box">
+					<label id="char-num-label" for="char-num">Characters: </label><input id="char-num" type="number" size="2">
+				</div>
+				<input type="button" id="form-submit-button" onclick="addFormItems()" value="Submit"><br/>
+				<input type="button" id="lets-play-button" onclick="playGame()" value="Let's Play!"><br/>
+			</div>
+		</div>
+		<div id="halfpage-right">
+
+			<input type="button" id="cycle-button" onclick="cycle()" value="Next">
+
+			<div id="round-counter-box">
+				<div id="round-counter">Round 1</div>
+				<div id="turn-counter">Turn 1</div>
+			</div>
+
+			<div id="char-container">
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+<footer>
+	<script src="CharList.js"></script>
+	<script src="it-form.js"></script>
+</footer>
+</html>
