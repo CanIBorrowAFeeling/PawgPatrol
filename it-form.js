@@ -22,9 +22,22 @@ class FormItem {
         sname.setAttribute('class', 'fname')
         sname.innerHTML = "Name "
 
+        let snameSelect = firstDiv.appendChild(document.createElement('select'))
+        snameSelect.setAttribute('id', `fname-select${this.id}`)
+        snameSelect.setAttribute('class', 'fname-input')
+        snameSelect.setAttribute('onchange', `selectChar(${this.id}, this.value)`)
+
         let snameInput = firstDiv.appendChild(document.createElement('input'))
         snameInput.setAttribute('id', `fname-input${this.id}`)
-        snameInput.setAttribute('class', 'fname-input')
+
+        let option = snameSelect.appendChild(document.createElement('option'))
+        option.setAttribute('value', 'none')
+
+        for(let i in characterStats) {
+            let optionChars = snameSelect.appendChild(document.createElement('option'))
+            optionChars.value = i
+            optionChars.innerHTML = characterStats[i].firstName
+        }
 
         firstDiv.appendChild(document.createElement('br'))
 
@@ -132,7 +145,7 @@ class Character {
         firstDiv.setAttribute('class', 'first-char-div')
 
         let sname = firstDiv.appendChild(document.createElement('span'))
-        sname.setAttribute('class', 'attribute-label')
+        sname.setAttribute('class', 'attribute-label character-box-name')
         sname.innerHTML = `${this.name}`
 
         let secondDiv = d.appendChild(document.createElement('div'))
@@ -197,6 +210,20 @@ function addFormItems() {
 let charItems = []
 let round = 1
 let turn = 1
+
+function selectChar(id, choice) {
+    document.getElementById(`fname-input${id}`).value = characterStats[choice].firstName
+    document.getElementById(`fHP-input${id}`).value = characterStats[choice].currentHP
+    document.getElementById(`fHPmax-input${id}`).value = characterStats[choice].maxHP
+    document.getElementById(`fAC${id}`).value = characterStats[choice].AC
+    document.getElementById(`fstatus-input${id}`).value = characterStats[choice].charStatus
+
+    if(characterStats[choice].alignment == 'good') {
+        document.getElementById(`sgood${id}`).checked = true
+    } else {
+        document.getElementById(`sbad${id}`).checked = true
+    }
+}
 
 function playGame() {
 

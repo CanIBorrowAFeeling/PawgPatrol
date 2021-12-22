@@ -6,20 +6,21 @@ const characterStats = [
         race: "Half-Orc",
         Class: "Barbarian",
         subclass: "Fighter",
-        level: 11,
-        levelmain: 9,
-        levelsub: 2,
-		currentHP: 135,
-		maxHP: 135,
-        AC: 21,
-        STR: 20,
+        level: 13,
+        levelmain: 10,
+        levelsub: 3,
+		currentHP: 158,
+		maxHP: 158,
+        AC: 20,
+        STR: 29,
         DEX: 15,
         CON: 20,
         INT: 8,
         WIS: 9,
         CHR: 12,
         walkSpeed: 40,
-		charStatus: ""
+		charStatus: "Raged",
+		alignment: 'good',
     },
 
 {
@@ -29,11 +30,11 @@ const characterStats = [
         race: "Gnome",
         Class: "Cleric",
         subclass: "Warlock",
-        level: 11,
-        levelmain: 9,
+        level: 13,
+        levelmain: 11,
         levelsub: 2,
-		currentHP: 91,
-		maxHP: 91,
+		currentHP: 107,
+		maxHP: 107,
         AC: 19,
         STR: 14,
         DEX: 11,
@@ -42,7 +43,8 @@ const characterStats = [
         WIS: 18,
         CHR: 13,
         walkSpeed: 30,
-		charStatus: ""
+		charStatus: "",
+		alignment: 'good',
 	},
 
 {
@@ -53,8 +55,8 @@ const characterStats = [
     race2: "Drow",
     Class: "Bard",
     subclass: "Rogue",
-    level: 11,
-    levelmain: 3,
+    level: 13,
+    levelmain: 5,
     levelsub: 8,
 	currentHP: 80,
 	maxHP: 80,
@@ -66,7 +68,8 @@ const characterStats = [
     WIS: 12,
     CHR: 16,
     walkSpeed: 30,
-	charStatus: ""
+	charStatus: "",
+	alignment: 'good',
 	},
 {
 	type: "PC",
@@ -89,7 +92,8 @@ const characterStats = [
     WIS: 12,
     CHR: 11,
     walkSpeed: 30,
-	charStatus: ""
+	charStatus: "",
+	alignment: 'good',
 	},
 
 {
@@ -100,7 +104,8 @@ const characterStats = [
 	currentHP: 180,
 	maxHP: 180,
 	AC: 17,
-	charStatus: ""
+	charStatus: "",
+	alignment: 'bad'
 	}]
 
 /*

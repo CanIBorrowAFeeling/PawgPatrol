@@ -27,6 +27,9 @@ ul {
 li {
     display: inline;
     padding: 8px;
+    border-style: none solid none solid;
+    border-width: 1px;
+    border-color: #8bb3fc;
 }
 
 li:hover {
@@ -34,11 +37,32 @@ li:hover {
     cursor: pointer;
 }
 
-a {
+p.index-link {
+    background-color:
+}
+
+a.nav-button {
     text-decoration: none;
     color: black
 }
 
-a:visited {
+a.nav-button:visited {
     color: black;
+}
+
+.page-left {
+    margin: auto;
+    width: 50%;
+}
+
+.page-right {
+    margin: auto;
+    width: 50%;
+}
+
+.index-divs {
+    margin: 20px;
+    padding: 10px 20px;
+    border-style: solid none none solid;
+    border-width: 1px;
 }
