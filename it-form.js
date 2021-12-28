@@ -119,6 +119,10 @@ class FormItem {
         sbadText.setAttribute('for', `sbad${this.id}`)
         sbadText.innerHTML = 'Bad'
 
+        let imageSpan = secondDiv.appendChild(document.createElement('span'))
+        imageSpan.setAttribute('id', `image${this.id}`)
+        imageSpan.setAttribute('name', '')
+
     }
 }
 
@@ -129,17 +133,34 @@ class Character {
     }
 
     addToPage() {
-        let d = this.domElement = document.createElement('div')
-        d.setAttribute('id', `char${this.id}`)
-        d.setAttribute('class', `character-box order${this.order}`)
-        d.style.order = this.order
-        document.getElementById('char-container').appendChild(d)
+        let m = this.domElement = document.createElement('div')
+        m.setAttribute('id', `char${this.id}`)
+        m.setAttribute('class', `character-box order${this.order}`)
+        m.style.order = this.order
+        document.getElementById('char-container').appendChild(m)
 
-        if(this.goodbad) {
-            d.classList.add('bad-character')
+        if (this.goodbad == 'bad') {
+            m.classList.add('bad-character')
+        } else if (this.goodbad == 'good') {
+            m.classList.add('good-character')
+        } else if (this.status == 'dead') {
+            m.classList.add('knocked-out neutral-char')
         } else {
-            d.classList.add('good-character')
+            m.classList.add('neutral-character')
         }
+
+        let pictureDiv = m.appendChild(document.createElement('div'))
+        pictureDiv.setAttribute('class', 'character-box-left')
+
+        if (this.image != '') {
+        let pic = pictureDiv.appendChild(document.createElement('img'))
+        pic.setAttribute('id', `charPic${this.id}`)
+        pic.setAttribute('height', '100')
+        pic.setAttribute('src', `files/${this.image}`)
+        }
+
+        let d = m .appendChild(document.createElement('div'))
+        d.setAttribute('class', 'character-box-right')
 
         let firstDiv = d.appendChild(document.createElement('div'))
         firstDiv.setAttribute('class', 'first-char-div')
@@ -193,8 +214,8 @@ function addFormItems() {
 
     if (current <= x) {
         for(let i=current; i<x; i++) {
-            let x = new FormItem(i)
-            x.addToPage()
+            let l = new FormItem(i)
+            l.addToPage()
         }
     } else {
         container = document.getElementById('halfpage-left')
@@ -212,11 +233,19 @@ let round = 1
 let turn = 1
 
 function selectChar(id, choice) {
+    charName = document.getElementById(`fname-select${id}`).value
+
     document.getElementById(`fname-input${id}`).value = characterStats[choice].firstName
     document.getElementById(`fHP-input${id}`).value = characterStats[choice].currentHP
     document.getElementById(`fHPmax-input${id}`).value = characterStats[choice].maxHP
     document.getElementById(`fAC${id}`).value = characterStats[choice].AC
     document.getElementById(`fstatus-input${id}`).value = characterStats[choice].charStatus
+
+    if (charName != 'none') {
+        if (characterStats[choice].image) {
+        document.getElementById(`image${id}`).setAttribute('name', `${characterStats[choice].image}`)
+        }
+    }
 
     if(characterStats[choice].alignment == 'good') {
         document.getElementById(`sgood${id}`).checked = true
@@ -227,19 +256,29 @@ function selectChar(id, choice) {
 
 function playGame() {
 
+    currentTurn = turn
     charItems = []
 
     for(let i in formItems) {
+        dom = formItems[i].domElement
         const char = {
             'id': parseInt(formItems[i].id, 0),
-            'name': formItems[i].domElement.children[0].children[`fname-input${i}`].value,
-            'HP': parseInt(formItems[i].domElement.children[0].children[`fHP-input${i}`].value, 0),
-            'maxHP': formItems[i].domElement.children[0].children[`fHPmax-input${i}`].value,
-            'AC': formItems[i].domElement.children[0].children[`fAC${i}`].value,
-            'status': formItems[i].domElement.children[0].children[`fstatus-input${i}`].value,
-            'order': parseInt(formItems[i].domElement.children[1].children[`finit-input${i}`].value, 0),
-            'goodbad': formItems[i].domElement.children[1].children[`sbad${i}`].checked
+            'name': dom.children[0].children[`fname-input${i}`].value,
+            'HP': parseInt(dom.children[0].children[`fHP-input${i}`].value, 0),
+            'maxHP': dom.children[0].children[`fHPmax-input${i}`].value,
+            'AC': dom.children[0].children[`fAC${i}`].value,
+            'status': dom.children[0].children[`fstatus-input${i}`].value,
+            'order': parseInt(dom.children[1].children[`finit-input${i}`].value, 0),
+            'goodbad': 'neutral',
+            'image': dom.children[1].children[`image${i}`].getAttribute('name'),
         }
+
+        if (dom.children[1].children[`sbad${i}`].checked) {
+            char.goodbad = 'bad'
+        } else if (dom.children[1].children[`sgood${i}`].checked) {
+            char.goodbad = 'good'
+        }
+
         charItems.push(char)
     }
 
@@ -255,10 +294,19 @@ function playGame() {
         newChar.addToPage()
     }
 
-    document.getElementById('char-container').firstChild.classList.add('current-char')
+
+
+    document.getElementById('turn-counter').innerHTML = 'Turn 1'
 
     turn = 1
-    document.getElementById('turn-counter').innerHTML = `Turn ${turn}`
+    container.firstChild.classList.add('current-char')
+    
+    for (let i=1; i<currentTurn; i++) {
+        cycle()
+    }
+
+
+
 }
 
 function cycle() {

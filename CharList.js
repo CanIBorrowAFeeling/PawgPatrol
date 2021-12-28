@@ -21,6 +21,7 @@ const characterStats = [
         walkSpeed: 40,
 		charStatus: "Raged",
 		alignment: 'good',
+		image: 'pic-Aug.png'
     },
 
 {
@@ -45,6 +46,7 @@ const characterStats = [
         walkSpeed: 30,
 		charStatus: "",
 		alignment: 'good',
+		image: 'pic-MC.png'
 	},
 
 {
@@ -94,6 +96,33 @@ const characterStats = [
     walkSpeed: 30,
 	charStatus: "",
 	alignment: 'good',
+	image: 'pic-Uro.jpg'
+},
+
+{
+	type: "PC",
+    name: "Tashlyn Yafeera",
+	firstName: "Tashlyn",
+    race: "Human",
+    race2: null,
+    Class: "Fighter",
+    subclass: null,
+    level: 11,
+    levelmain: 11,
+    levelsub: null,
+	currentHP: 149,
+	maxHP: 149,
+    AC: 18,
+    STR: 18,
+    DEX: 15,
+    CON: 14,
+    INT: 10,
+    WIS: 14,
+    CHR: 12,
+    walkSpeed: 30,
+	charStatus: "",
+	alignment: 'good',
+	image: 'pic-Tashlyn.png'
 	},
 
 {
@@ -105,8 +134,11 @@ const characterStats = [
 	maxHP: 180,
 	AC: 17,
 	charStatus: "",
-	alignment: 'bad'
-	}]
+	alignment: 'bad',
+	image: 'pic-Champion.jpg',
+	},
+
+]
 
 /*
 let charNames = [""]
