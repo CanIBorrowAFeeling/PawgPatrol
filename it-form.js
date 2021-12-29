@@ -256,6 +256,8 @@ function selectChar(id, choice) {
 
 function playGame() {
 
+    document.getElementById('halfpage-left').style.display = 'none'
+
     currentTurn = turn
     charItems = []
 
@@ -339,4 +341,8 @@ function cycle() {
     document.getElementById('round-counter').innerHTML = `Round ${round}`
     document.getElementById('turn-counter').innerHTML = `Turn ${turn}`
 
+}
+
+function addCharacters() {
+        document.getElementById('halfpage-left').style.display = ''
 }
