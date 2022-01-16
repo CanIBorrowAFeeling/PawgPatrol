@@ -190,6 +190,16 @@ class Character {
         let sHPmax = secondDiv.appendChild(document.createElement('span'));
         sHPmax.innerHTML = this.maxHP;
 
+        let skill = secondDiv.appendChild(document.createElement('button'));
+        skill.setAttribute('class', 'smooth kill-button');
+        skill.setAttribute('onclick', `kill(${this.id})`);
+        skill.innerHTML = 'Kill';
+
+        let sko = secondDiv.appendChild(document.createElement('button'));
+        sko.setAttribute('class', 'smooth KO-button');
+        sko.setAttribute('onclick', `knockout(${this.id})`);
+        sko.innerHTML = 'Knock-Out';
+
         let thirdDiv = d.appendChild(document.createElement('div'));
         thirdDiv.setAttribute('class', 'third-char-div');
 
@@ -235,12 +245,6 @@ function addFormItems() {
     };
 };
 
-// Create game
-
-let charItems = [];
-let round = 1;
-let turn = 1;
-
 function selectChar(id, choice) {
     charName = document.getElementById(`fname-select${id}`).value;
 
@@ -262,6 +266,12 @@ function selectChar(id, choice) {
         document.getElementById(`sevil${id}`).checked = true;
     };
 };
+
+// Create game
+
+let charItems = [];
+let round = 1;
+let turn = 1;
 
 function playGame() {
 
@@ -350,4 +360,28 @@ function cycle() {
 
 function addCharacters() {
         document.getElementById('halfpage-right').style.display = '';
+};
+
+function knockout(charID) {
+    let div = document.getElementById(`char${charID}`);
+    if( div.classList.contains('knockedout-character') ) {
+        div.classList.remove('knockedout-character')
+    } else {
+        div.classList.add('knockedout-character');
+    };
+};
+
+function kill(charID) {
+    // Delete the div
+    let div = document.getElementById(`char${charID}`);
+    div.parentNode.removeChild(div);
+
+    // Remove character from js array
+    let x = charItems.findIndex(charItem => charItem.id == charID);
+    charItems.pop(x);
+    
+    // Correct turn counter if needed
+    if(turn > charItems.length) {
+        turn -= 1;
+    };
 };

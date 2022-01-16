@@ -3,10 +3,6 @@ body {
 	background-image: url('files/2077762.jpg');
 }
 
-#banner1 {
-
-}
-
 .halfpage {
 	padding: 1px;
 	display: grid;
@@ -41,19 +37,71 @@ body {
     flex-direction: row;
 }
 
-.right-page-buttons {
-    background-color: white;
+.smooth {
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+#form-submit-button {
+    background-color: #00c3ff;
+    width: 50%;
+    color: white;
+    margin: auto auto 5px auto;
+    padding: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#form-submit-button:hover {
+    background-color: #7de1ff;
+    color: black;
+    cursor: pointer;
+}
+
+#lets-play-button {
+    background-color: #00c3ff;
+    color: white;
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+    margin: auto auto 5px auto;
+    padding: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#lets-play-button:hover {
+    background-color: #7de1ff;
+    color: black;
+    cursor: pointer;
+}
+
+.KO-button {
+    margin: auto auto auto 5px;
+    float: right;
+    background-color: #8a8a8a;
+}
+
+.kill-button {
+    margin: auto 5px;
+    float: right;
+    background-color: #ff8585;
+}
+
+.left-page-buttons {
     border: solid;
     border-style: solid;
     border-width: 2px;
     border-radius: 4px;
+    background-color: white;
     border-color: blue;
     height: 40px;
     margin: 0px auto 10px auto;
     font-size: 16px;
 }
 
-.right-page-buttons:hover {
+.left-page-buttons:hover {
     cursor: pointer;
     background-color: #DFF;
 }
@@ -92,6 +140,7 @@ body {
 
 .character-box {
     background-color: white;
+    min-width: 350px;
     opacity: 0.85;
     border-style: solid;
     border-width: 3px;
@@ -113,7 +162,7 @@ body {
 }
 
 .character-box-right {
-
+    width: 80%;
 }
 
 .good-character {
@@ -185,42 +234,6 @@ body {
     max-width: 40px;
 }
 
-#form-submit-button {
-    background-color: #00c3ff;
-    width: 50%;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    margin: auto auto 5px auto;
-    padding: 10px;
-    display: inline-block;
-    font-weight: bold;
-}
-
-#form-submit-button:hover {
-    background-color: #7de1ff;
-    color: black;
-    cursor: pointer;
-}
-
-#lets-play-button {
-    background-color: #00c3ff;
-    color: white;
-    width: 50%;
-    border: none;
-    border-radius: 5px;
-    margin: auto auto 5px auto;
-    padding: 10px;
-    display: inline-block;
-    font-weight: bold;
-}
-
-#lets-play-button:hover {
-    background-color: #7de1ff;
-    color: black;
-    cursor: pointer;
-}
-
 .add-character-box {
     display: flex;
     flex-direction: row;
@@ -231,10 +244,6 @@ body {
     border-width: 2px;
     border-radius: 5px;
     border-color: #8a8a8a;
-}
-
-.first-form-div {
-
 }
 
 .fname-input {
