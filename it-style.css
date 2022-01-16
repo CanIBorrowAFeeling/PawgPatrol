@@ -43,6 +43,10 @@ body {
     padding: 8px;
 }
 
+.smooth:hover {
+    cursor: pointer;
+}
+
 #form-submit-button {
     background-color: #00c3ff;
     width: 50%;
@@ -56,7 +60,7 @@ body {
 #form-submit-button:hover {
     background-color: #7de1ff;
     color: black;
-    cursor: pointer;
+
 }
 
 #lets-play-button {
@@ -74,7 +78,6 @@ body {
 #lets-play-button:hover {
     background-color: #7de1ff;
     color: black;
-    cursor: pointer;
 }
 
 .KO-button {
