@@ -1,5 +1,5 @@
 const characterStats = [
-{
+    {
 		type: "PC",
         name: "Aug Gushgabagoc Shelahk",
 		firstName: "Aug",
@@ -24,7 +24,7 @@ const characterStats = [
 		image: 'pic-Aug.png'
     },
 
-{
+    {
 	type: "PC",
 	name: "Martha-Charlyne",
 	firstName: "MC",
@@ -47,9 +47,9 @@ const characterStats = [
 	status: "",
 	alignment: 'good',
 	image: 'pic-MC.png'
-},
+    },
 
-{
+    {
 	type: "PC",
 	name: "Galileo Figarro",
 	firstName: "Gally",
@@ -73,7 +73,8 @@ const characterStats = [
 	status: "",
 	alignment: 'good',
 	},
-{
+
+    {
 	type: "PC",
     name: "Uro-Zire Lal'Axle-Stelaltulath",
 	firstName: "Uro",
@@ -98,6 +99,32 @@ const characterStats = [
 	alignment: 'good',
 	image: 'pic-Uro.jpg'
 },
+
+    {
+	type: "PC",
+	name: "Aurora",
+	firstName: "Aurora",
+    race: "",
+    race2: "",
+    Class: "Wizard",
+    subclass: "",
+    level: 13,
+    levelmain: 13,
+    levelsub: 0,
+	currentHP: "",
+	maxHP: "",
+    AC: 17,
+    STR: 10,
+    DEX: 14,
+    CON: 14,
+    INT: 13,
+    WIS: 12,
+    CHR: 16,
+    walkSpeed: 30,
+	status: "Fabulous",
+	alignment: 'good',
+    image: 'pic-Chris.jpg'
+	},
 
 {
 	type: "PC",
