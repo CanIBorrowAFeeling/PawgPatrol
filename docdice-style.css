@@ -1,0 +1,77 @@
+/* Styles go here */
+body {
+	background-color: #900c3f/*6ea9c8*/;
+	background-image: url('files/redDragon.png');
+	background-repeat: no-repeat;
+	font-family: Calibri;
+}
+h1 {
+	text-align: left;
+	font-family: Candara, Monaco, monospace;
+	font-style: italic;
+	color: black;
+}
+
+h2 {
+	text-align: left;
+	padding: 8px 0px 2px 8px;
+}
+
+.main-banner {
+	background: #900c3f;
+	width: 110%;
+	padding: 50px 25px 0px 50px;
+	margin: 0px 0px -40px -30px;
+	position: relative;
+	top: -60px;
+}
+
+.rules {
+	width: 90%;
+}
+
+.game {
+	font-family: Calibri;
+	color: black;
+	margin: 20px 0px 20px -30px;
+	padding: 0px 0px 20px 35px;
+	width: 75%;
+	min-width: 500px;
+	max-width: 850px;
+	background-color: gold;
+	border-style: solid;
+	border-color: black;
+	border-width: 5px;
+	border-radius: 20px;
+}
+
+div.inline {
+	float: left;
+	padding: 10px;
+	padding-left: 20px;
+}
+
+div#BankrollBanner {
+	position: static;
+	
+}
+
+#CrownAndAnchor {
+	min-height: 300px;
+}
+
+#DragonDice {
+	height: 250px;
+}
+
+#CAAform {
+	font-color: blue;
+}
+
+#DDresultLines {
+	text-align: center;
+}
+
+#bankrollText {
+	font-style: bold;
+}

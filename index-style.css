@@ -27,9 +27,13 @@ ul {
 li {
     display: inline;
     padding: 8px;
-    border-style: none solid none solid;
+    border-style: none solid none none;
     border-width: 1px;
     border-color: #8bb3fc;
+}
+
+#first-nav-button {
+    border-style: none solid none solid;
 }
 
 li:hover {
@@ -38,7 +42,7 @@ li:hover {
 }
 
 p.index-link {
-    background-color:
+    background-color: ;
 }
 
 a.nav-button {

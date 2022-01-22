@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Dockside Dice</title>
+	<link rel="stylesheet" href="docdice-style.css">
+	<link rel="stylesheet" href="index-style.css">
+	<script src="scripts/DocksideDiceGames.js"></script>
+</head>
+<header>
+	<div class="banner" id="banner-homepage">
+
+		<h2 id="title"><a class="nav-button" href="index.html">Da Pawg Patrol</a></h2>
+
+        <ul class="nav-bar">
+            <li id="first-nav-button"><a class="nav-button" href="it-page.html">Initiative Tracker</a></li>
+            <li><a class="nav-button" href="docdice.html">Dockside Dice</a></li>
+        </ul>
+
+    </div>
+</header>
+<body onload="document.bankrollForm.reset(); document.CAAform.reset(); document.DragonDiceBet.reset()">
+
+	<div id="beginGambling">
+		<form id="bankrollForm" name="bankrollForm" action="#">
+			<label for="bankroll">Choose a bankroll:  <input id="bankroll" type="number" value="0"></label>
+			<input type="button" id="bankrollButton" onclick="enterBankroll()" value="submit">
+		</form>
+		<p id="bankrollText">Current Bankroll: <span id="currentBankroll">0</span>g</p>
+	</div>
+	<div class="game" id="CrownAndAnchor">
+		<h2>Crown and Anchor</h2>
+		<p class="rules">Three six-faced die with the following faces are rolled. 
+You get double your bet if your face hits. More if it hits more times!</p>
+		<div class="inline">
+			<form id="CAAform" name="CAAform" action="#">
+			<label for="crownBet"><input id="crownBet" type="number" value="0"> Crown</label><br/>
+			<label for="anchorBet"><input id="anchorBet" type="number" value="0"> Anchor</label><br/>
+			<label for="heartBet"><input id="heartBet" type="number" value="0"> Heart</label><br/>
+			<label for="spadeBet"><input id="spadeBet" type="number" value="0"> Spade</label><br/>
+			<label for="clubBet"><input id="clubBet" type="number" value="0"> Club</label><br/>
+			<label for="diamondBet"><input id="diamondBet" type="number" value="0"> Diamond</label><br/>
+			<input type="button" id="CAAbutton" name="CAAbutton" onclick="playCAA()" value="submit">
+			<input type="reset" value="reset" />
+			</form>
+		</div>
+		<div class="inline">
+			<p id="CAAresult1">Dice rolls: ___ ___ ___</p>
+			<p id="CAAresult2"></p>
+			<p id="CAAresult3"></p>
+		</div>
+	</div>
+
+	<div class="game" id="DragonDice">
+	<h2><-=~*Dragon Dice*=^M^></h2>
+	<p class="rules">The player and the bank each roll 1d4, 1d6, 1d8, 1d10 and add up the rolls. Whoever gets the highest number wins!</p>
+	<form id="DragonDiceBet" name="DragonDiceBet" action="#">
+		<label for="DDBet">
+			<input id="DDBet" type="number" value="0">  Place your bet
+		</label><br/>
+		<input type="button" id="DDButton" name="DDButton" onclick="playDragonDice()" value="submit">
+	</form>
+		<div id="DDresultLines">
+			<p id="DDResult1"></p>
+			<p id="DDResult2"></p>
+		</div>
+	</div>
+	<div class="game">
+		<h2>Blackjack</h2>
+	</div>
+</body>
+</html>

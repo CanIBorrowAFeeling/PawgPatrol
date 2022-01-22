@@ -131,9 +131,12 @@ body {
 
 #round-counter-box {
     margin: auto;
+    padding: 5px;
+    width: 70%;
     font-weight: bold;
     font-size: 24px;
     text-align: center;
+    background-color: rgb(73, 27, 27);
 }
 
 #round-counter {
