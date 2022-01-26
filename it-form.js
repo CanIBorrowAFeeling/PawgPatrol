@@ -100,10 +100,11 @@ class FormItem {
         secondDiv.appendChild(document.createElement('br'));
 
         let sgoodBox = secondDiv.appendChild(document.createElement('input'));
-        sgoodBox.setAttribute('id', `sgood${this.id}`);
-        sgoodBox.setAttribute('name', `goodevil${this.id}`);
-        sgoodBox.setAttribute('value', 'good');
         sgoodBox.setAttribute('type', 'radio');
+        sgoodBox.setAttribute('id', `sgood${this.id}`);
+        sgoodBox.setAttribute('name', `alignment${this.id}`);
+        sgoodBox.setAttribute('value', 'good');
+
 
         let sgoodText = secondDiv.appendChild(document.createElement('label'));
         sgoodText.setAttribute('for', `sgood${this.id}`);
@@ -112,10 +113,11 @@ class FormItem {
         secondDiv.appendChild(document.createElement('br'));
 
         let sevilBox = secondDiv.appendChild(document.createElement('input'));
+        sevilBox.setAttribute('type', 'radio');
         sevilBox.setAttribute('id', `sevil${this.id}`);
         sevilBox.setAttribute('name', `alignment${this.id}`);
         sevilBox.setAttribute('value', 'evil');
-        sevilBox.setAttribute('type', 'radio');
+
 
         let sevilText = secondDiv.appendChild(document.createElement('label'));
         sevilText.setAttribute('for', `sevil${this.id}`);
@@ -236,12 +238,17 @@ function addFormItems() {
             let l = new FormItem(i);
             l.addToPage();
         };
-    } else {
+        return 0;
+    }
+    removeChild();
+    
+    function removeChild() {
         container = document.getElementById('halfpage-right');
-        for(let i=0; i < (current - x); i++) {
+        for (let i = 0; i < (current - x); i++) {
             container.removeChild(container.lastChild);
             formItems.pop();
         };
+        return 1;
     };
 };
 
@@ -260,9 +267,13 @@ function selectChar(id, choice) {
         };
     };
 
-    if(characterStats[choice].alignment == 'good') {
+    thisCharAlign = characterStats[choice].alignment
+
+    if(thisCharAlign == 'good') {
         document.getElementById(`sgood${id}`).checked = true;
-    } else {
+    } 
+
+    if(thisCharAlign == 'evil') {
         document.getElementById(`sevil${id}`).checked = true;
     };
 };
@@ -278,9 +289,29 @@ function playGame() {
     document.getElementById('halfpage-right').style.display = 'none';
 
     currentTurn = turn;
-    charItems = [];
 
-    for(let i in formItems) {
+    for (n = charItems.length; n < formItems.length; n++) {
+        createCharFromForm(n);
+        newChar = new Character(charItems[n])
+        newChar.addToPage();
+    }
+
+    charItems.sort(
+        function (a,b) {return b.order - a.order}
+        );
+
+    document.getElementById('turn-counter').innerHTML = 'Turn 1';
+
+    turn = 1;
+    
+    for (let i=1; i<currentTurn; i++) {
+        cycle();
+    };
+
+    highlightCurrentChar()
+
+    function createCharFromForm(i) {
+        
         dom = formItems[i].domElement;
         const char = {
             'id': parseInt(formItems[i].id, 0),
@@ -292,39 +323,19 @@ function playGame() {
             'order': parseInt(dom.children[1].children[`finit-input${i}`].value, 0),
             'alignment': 'neutral',
             'image': dom.children[1].children[`image${i}`].getAttribute('name'),
+            };
+
+            if (dom.children[1].children[`sevil${i}`].checked) {
+                char.alignment = 'evil';
+            };
+            
+            if (dom.children[1].children[`sgood${i}`].checked) {
+                char.alignment = 'good';
+            };
+
+            charItems.push(char);
         };
-
-        if (dom.children[1].children[`sevil${i}`].checked) {
-            char.alignment = 'evil';
-        } else if (dom.children[1].children[`sgood${i}`].checked) {
-            char.alignment = 'good';
-        };
-
-        charItems.push(char);
     };
-
-    charItems.sort(
-        function (a,b) {return b.order - a.order}
-        );
-
-    container = document.getElementById('char-container');
-    container.innerHTML = '';
-
-    for(let char in charItems) {
-        newChar = new Character(charItems[char]);
-        newChar.addToPage();
-    };
-
-    document.getElementById('turn-counter').innerHTML = 'Turn 1';
-
-    turn = 1;
-    container.firstChild.classList.add('current-char');
-    
-    for (let i=1; i<currentTurn; i++) {
-        cycle();
-    };
-
-};
 
 function cycle() {
 
@@ -339,12 +350,7 @@ function cycle() {
 
     characters[0].style.order = first;
 
-    document.getElementById('char-container').children[turn-1].classList.remove('current-char');
-    if(turn < charItems.length) {
-        document.getElementById('char-container').children[turn].classList.add('current-char');
-    } else {
-        document.getElementById('char-container').children[0].classList.add('current-char');
-    };
+    highlightCurrentChar()
 
     if(turn < charItems.length) {
         turn += 1;
@@ -357,6 +363,31 @@ function cycle() {
     document.getElementById('turn-counter').innerHTML = `Turn ${turn}`;
 
 };
+
+function highlightCurrentChar() {
+    let highestOrder = 0;
+    let highestID = 0;
+
+    function evaluateOrder(charOrder, i) {
+        if (charOrder > highestOrder) {
+            highestOrder = charOrder;
+            highestID = i;
+        }
+    }
+    
+    for (let i = 0; i < charItems.length; i++) {
+        let thisChar = document.getElementById(`char${i}`)
+        let charOrder = thisChar.style.order;
+        thisChar.classList.remove('current-char')
+
+        evaluateOrder(charOrder, i);
+    }
+    
+    let currentCharDom = document.getElementById(`char${highestID}`)
+    if(!currentCharDom.classList.contains('current-char')) {
+        currentCharDom.classList.add('current-char');
+    }
+}
 
 function addCharacters() {
         document.getElementById('halfpage-right').style.display = '';

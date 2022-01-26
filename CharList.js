@@ -121,7 +121,7 @@ const characterStats = [
     WIS: 12,
     CHR: 16,
     walkSpeed: 30,
-	status: "Fabulous",
+	status: "",
 	alignment: 'good',
     image: 'pic-Chris.jpg'
 	},

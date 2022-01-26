@@ -136,19 +136,21 @@ body {
     font-weight: bold;
     font-size: 24px;
     text-align: center;
-    background-color: rgb(73, 27, 27);
+    background-color: rgb(196, 160, 160);
+    border-style: solid;
+    border-radius: 5em;
 }
 
 #round-counter {
     display: inline-block;
     margin: auto auto auto auto;
-    color: red;
+    color: rgb(112, 26, 26);
 }
 
 #turn-counter {
     display: inline-block;
     margin: auto;
-    color: yellow;
+    color: rgb(228, 64, 23);
 }
 
 #char-container {
