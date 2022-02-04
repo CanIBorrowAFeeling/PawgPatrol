@@ -100,11 +100,10 @@ class FormItem {
         secondDiv.appendChild(document.createElement('br'));
 
         let sgoodBox = secondDiv.appendChild(document.createElement('input'));
-        sgoodBox.setAttribute('type', 'radio');
         sgoodBox.setAttribute('id', `sgood${this.id}`);
         sgoodBox.setAttribute('name', `alignment${this.id}`);
         sgoodBox.setAttribute('value', 'good');
-
+        sgoodBox.setAttribute('type', 'radio');
 
         let sgoodText = secondDiv.appendChild(document.createElement('label'));
         sgoodText.setAttribute('for', `sgood${this.id}`);
@@ -113,11 +112,10 @@ class FormItem {
         secondDiv.appendChild(document.createElement('br'));
 
         let sevilBox = secondDiv.appendChild(document.createElement('input'));
-        sevilBox.setAttribute('type', 'radio');
         sevilBox.setAttribute('id', `sevil${this.id}`);
         sevilBox.setAttribute('name', `alignment${this.id}`);
         sevilBox.setAttribute('value', 'evil');
-
+        sevilBox.setAttribute('type', 'radio');
 
         let sevilText = secondDiv.appendChild(document.createElement('label'));
         sevilText.setAttribute('for', `sevil${this.id}`);
@@ -137,23 +135,25 @@ class Character {
     }
 
     addToPage() {
-        let m = this.domElement = document.createElement('div');
-        m.setAttribute('id', `char${this.id}`);
-        m.setAttribute('class', `character-box order${this.order}`);
-        m.style.order = this.order;
-        document.getElementById('char-container').appendChild(m);
+        let charDiv = this.domElement = document.createElement('div');
+        charDiv.setAttribute('id', `char${this.id}`);
+        charDiv.setAttribute('class', `character-box`);
+        charDiv.style.order = this.order;
+        document.getElementById('char-container').appendChild(charDiv);
 
         if (this.alignment == 'evil') {
-            m.classList.add('evil-character');
+            charDiv.classList.add('evil-character');
         } else if (this.alignment == 'good') {
-            m.classList.add('good-character');
-        } else if (this.status == 'dead') {
-            m.classList.add('knocked-out neutral-char');
+            charDiv.classList.add('good-character');
         } else {
-            m.classList.add('neutral-character');
+            charDiv.classList.add('neutral-character');
         };
 
-        let pictureDiv = m.appendChild(document.createElement('div'));
+        if (this.isKnockedOut == true) {
+            charDiv.classList.add('knockedout-character')
+        }
+
+        let pictureDiv = charDiv.appendChild(document.createElement('div'));
         pictureDiv.setAttribute('class', 'character-box-left');
 
         if (this.image != '') {
@@ -164,65 +164,78 @@ class Character {
         pic.setAttribute('src', `files/pics/${this.image}`);
         };
 
-        let d = m .appendChild(document.createElement('div'));
-        d.setAttribute('class', 'character-box-right');
+        let charDivRight = charDiv.appendChild(document.createElement('div'));
+        charDivRight.setAttribute('class', 'character-box-right');
 
-        let firstDiv = d.appendChild(document.createElement('div'));
+        let firstDiv = charDivRight.appendChild(document.createElement('div'));
         firstDiv.setAttribute('class', 'first-char-div');
 
-        let sname = firstDiv.appendChild(document.createElement('span'));
-        sname.setAttribute('class', 'attribute-label character-box-name');
-        sname.innerHTML = `${this.name}`;
+        let cName = firstDiv.appendChild(document.createElement('span'));
+        cName.setAttribute('class', 'attribute-label character-box-name');
+        cName.innerHTML = `${this.name}`;
 
-        let secondDiv = d.appendChild(document.createElement('div'));
+        let secondDiv = charDivRight.appendChild(document.createElement('div'));
         secondDiv.setAttribute('class', 'second-char-div');
 
-        let sHP = secondDiv.appendChild(document.createElement('span'));
-        sHP.setAttribute('class', 'attribute-label');
-        sHP.innerHTML = "HP ";
+        let cHP = secondDiv.appendChild(document.createElement('span'));
+        cHP.setAttribute('class', 'attribute-label');
+        cHP.innerHTML = "HP ";
 
-        let sHPinput = secondDiv.appendChild(document.createElement('input'));
-        sHPinput.setAttribute('type', 'number');
-        sHPinput.setAttribute('size', '4');
-        sHPinput.value = this.HP;
+        let cHPinput = secondDiv.appendChild(document.createElement('input'));
+        cHPinput.setAttribute('id', `charHP${this.id}`);
+        cHPinput.setAttribute('type', 'number');
+        cHPinput.setAttribute('size', '4');
+        cHPinput.value = this.HP;
 
-        let sHPslash = secondDiv.appendChild(document.createElement('span'));
-        sHPslash.innerHTML = ' / ';
+        let cHPslash = secondDiv.appendChild(document.createElement('span'));
+        cHPslash.innerHTML = ' / ';
 
-        let sHPmax = secondDiv.appendChild(document.createElement('span'));
-        sHPmax.innerHTML = this.maxHP;
+        let cHPmax = secondDiv.appendChild(document.createElement('span'));
+        cHPmax.innerHTML = this.maxHP;
 
-        let skill = secondDiv.appendChild(document.createElement('button'));
-        skill.setAttribute('class', 'smooth kill-button');
-        skill.setAttribute('onclick', `kill(${this.id})`);
-        skill.innerHTML = 'Kill';
+        let cKill = secondDiv.appendChild(document.createElement('button'));
+        cKill.setAttribute('class', 'smooth kill-button');
+        cKill.setAttribute('onclick', `kill(${this.id})`);
+        cKill.innerHTML = 'Kill';
 
-        let sko = secondDiv.appendChild(document.createElement('button'));
-        sko.setAttribute('class', 'smooth KO-button');
-        sko.setAttribute('onclick', `knockout(${this.id})`);
-        sko.innerHTML = 'Knock-Out';
+        let cKO = secondDiv.appendChild(document.createElement('button'));
+        cKO.setAttribute('class', 'smooth KO-button');
+        cKO.setAttribute('onclick', `knockout(${this.id})`);
+        cKO.innerHTML = 'Knock-Out';
 
-        let thirdDiv = d.appendChild(document.createElement('div'));
+        let thirdDiv = charDivRight.appendChild(document.createElement('div'));
         thirdDiv.setAttribute('class', 'third-char-div');
 
         let sAC = thirdDiv.appendChild(document.createElement('span'));
         sAC.setAttribute('class', 'attribute-label');
         sAC.innerHTML = 'AC';
 
-        let sACinput = thirdDiv.appendChild(document.createElement('input'));
-        sACinput.setAttribute('size', '2');
+        let cACinput = thirdDiv.appendChild(document.createElement('input'));
+        cACinput.setAttribute('id', `charAC${this.id}`);
+        cACinput.setAttribute('size', '2');
         if (this.alignment == 'good') {
-            sACinput.value = this.AC;
+            cACinput.value = this.AC;
         };
 
-        let sstatus = thirdDiv.appendChild(document.createElement('span'));
-        sstatus.setAttribute('class', 'attribute-label');
-        sstatus.innerHTML = `Status `;
+        let cStatus = thirdDiv.appendChild(document.createElement('span'));
+        cStatus.setAttribute('class', 'attribute-label');
+        cStatus.innerHTML = `Status `;
 
-        let sstatusInput = thirdDiv.appendChild(document.createElement('input'));
-        sstatusInput.setAttribute('type', 'text');
-        sstatusInput.setAttribute('size', '10');
-        sstatusInput.value = this.status;
+        let cStatusInput = thirdDiv.appendChild(document.createElement('input'));
+        cStatusInput.setAttribute('id', `charStatus${this.id}`);
+        cStatusInput.setAttribute('type', 'text');
+        cStatusInput.setAttribute('size', '10');
+        cStatusInput.value = this.status;
+
+        let cInit = thirdDiv.appendChild(document.createElement('span'));
+        cInit.setAttribute('class', 'initiative-label attribute-label');
+        cInit.innerHTML = 'Initiative'
+        
+        let cInitInput = thirdDiv.appendChild(document.createElement('input'));
+        cInitInput.setAttribute('id', `charOrder${this.id}`);
+        cInitInput.setAttribute('type', 'number');
+        cInitInput.setAttribute('size', '2');
+        cInitInput.value = this.order;
 
     };
 
@@ -238,17 +251,12 @@ function addFormItems() {
             let l = new FormItem(i);
             l.addToPage();
         };
-        return 0;
-    }
-    removeChild();
-    
-    function removeChild() {
+    } else {
         container = document.getElementById('halfpage-right');
-        for (let i = 0; i < (current - x); i++) {
+        for(let i=0; i < (current - x); i++) {
             container.removeChild(container.lastChild);
             formItems.pop();
         };
-        return 1;
     };
 };
 
@@ -267,13 +275,9 @@ function selectChar(id, choice) {
         };
     };
 
-    thisCharAlign = characterStats[choice].alignment
-
-    if(thisCharAlign == 'good') {
+    if(characterStats[choice].alignment == 'good') {
         document.getElementById(`sgood${id}`).checked = true;
-    } 
-
-    if(thisCharAlign == 'evil') {
+    } else {
         document.getElementById(`sevil${id}`).checked = true;
     };
 };
@@ -289,29 +293,10 @@ function playGame() {
     document.getElementById('halfpage-right').style.display = 'none';
 
     currentTurn = turn;
+//    charItems = [];
 
-    for (n = charItems.length; n < formItems.length; n++) {
-        createCharFromForm(n);
-        newChar = new Character(charItems[n])
-        newChar.addToPage();
-    }
-
-    charItems.sort(
-        function (a,b) {return b.order - a.order}
-        );
-
-    document.getElementById('turn-counter').innerHTML = 'Turn 1';
-
-    turn = 1;
-    
-    for (let i=1; i<currentTurn; i++) {
-        cycle();
-    };
-
-    highlightCurrentChar()
-
-    function createCharFromForm(i) {
-        
+//    for(let i in formItems) {
+    for (let i = charItems.length; i < formItems.length; i++) {
         dom = formItems[i].domElement;
         const char = {
             'id': parseInt(formItems[i].id, 0),
@@ -323,19 +308,40 @@ function playGame() {
             'order': parseInt(dom.children[1].children[`finit-input${i}`].value, 0),
             'alignment': 'neutral',
             'image': dom.children[1].children[`image${i}`].getAttribute('name'),
-            };
-
-            if (dom.children[1].children[`sevil${i}`].checked) {
-                char.alignment = 'evil';
-            };
-            
-            if (dom.children[1].children[`sgood${i}`].checked) {
-                char.alignment = 'good';
-            };
-
-            charItems.push(char);
+            'isKnockedOut': false,
         };
+
+        if (dom.children[1].children[`sevil${i}`].checked) {
+            char.alignment = 'evil';
+        } else if (dom.children[1].children[`sgood${i}`].checked) {
+            char.alignment = 'good';
+        };
+
+        charItems.push(char);
     };
+
+    charItems.sort(
+        function (a,b) {return b.order - a.order}
+        );
+
+    container = document.getElementById('char-container');
+    container.innerHTML = '';
+
+    for(let n in charItems) {
+        newChar = new Character(charItems[n]);
+        newChar.addToPage();
+    };
+
+    document.getElementById('turn-counter').innerHTML = 'Turn 1';
+
+    turn = 1;
+    container.firstElementChild.classList.add('current-char');
+    
+    for (let i=1; i<currentTurn; i++) {
+        cycle();
+    };
+
+};
 
 function cycle() {
 
@@ -350,7 +356,12 @@ function cycle() {
 
     characters[0].style.order = first;
 
-    highlightCurrentChar()
+    document.getElementById('char-container').children[turn-1].classList.remove('current-char');
+    if(turn < charItems.length) {
+        document.getElementById('char-container').children[turn].classList.add('current-char');
+    } else {
+        document.getElementById('char-container').children[0].classList.add('current-char');
+    };
 
     if(turn < charItems.length) {
         turn += 1;
@@ -364,41 +375,30 @@ function cycle() {
 
 };
 
-function highlightCurrentChar() {
-    let highestOrder = 0;
-    let highestID = 0;
-
-    function evaluateOrder(charOrder, i) {
-        if (charOrder > highestOrder) {
-            highestOrder = charOrder;
-            highestID = i;
-        }
-    }
-    
-    for (let i = 0; i < charItems.length; i++) {
-        let thisChar = document.getElementById(`char${i}`)
-        let charOrder = thisChar.style.order;
-        thisChar.classList.remove('current-char')
-
-        evaluateOrder(charOrder, i);
-    }
-    
-    let currentCharDom = document.getElementById(`char${highestID}`)
-    if(!currentCharDom.classList.contains('current-char')) {
-        currentCharDom.classList.add('current-char');
-    }
-}
-
 function addCharacters() {
         document.getElementById('halfpage-right').style.display = '';
+        let charDivs = document.getElementById('char-container').childElementCount
+
+        for (let i = 0; i < charDivs; i++) {
+            let thisChar = charItems.filter(obj => {return obj.id == i})
+            let divIsKnockedOut = document.getElementById(`char${i}`).classList.contains('knockedout-character')
+            thisChar[0].HP = document.getElementById(`charHP${i}`).value;
+            thisChar[0].AC = document.getElementById(`charAC${i}`).value;
+            thisChar[0].status = document.getElementById(`charStatus${i}`).value;
+            thisChar[0].order = document.getElementById(`charOrder${i}`).value;
+            thisChar[0].isKnockedOut = divIsKnockedOut
+        }
 };
 
 function knockout(charID) {
     let div = document.getElementById(`char${charID}`);
+    let thisChar = charItems.filter(obj => {return obj.id == charID});
     if( div.classList.contains('knockedout-character') ) {
         div.classList.remove('knockedout-character')
+        thisChar[0].isKnockedOut = false;
     } else {
         div.classList.add('knockedout-character');
+        thisChar[0].isKnockedOut = true;
     };
 };
 

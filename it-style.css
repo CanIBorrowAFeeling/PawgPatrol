@@ -1,6 +1,6 @@
 body {
 	font-family: Tahoma, Verdana, sans-serif;
-	background-image: url('files/2077762.jpg');
+    background-color: rgb(238, 245, 255);
 }
 
 .halfpage {
@@ -130,27 +130,26 @@ body {
 }
 
 #round-counter-box {
+    border-radius: 10px;
     margin: auto;
     padding: 5px;
     width: 70%;
     font-weight: bold;
     font-size: 24px;
     text-align: center;
-    background-color: rgb(196, 160, 160);
-    border-style: solid;
-    border-radius: 5em;
+    background-color: rgb(0, 0, 0);
 }
 
 #round-counter {
     display: inline-block;
     margin: auto auto auto auto;
-    color: rgb(112, 26, 26);
+    color: rgb(255, 255, 255);
 }
 
 #turn-counter {
     display: inline-block;
     margin: auto;
-    color: rgb(228, 64, 23);
+    color: rgb(255, 255, 255);
 }
 
 #char-container {
@@ -161,7 +160,7 @@ body {
 .character-box {
     background-color: white;
     min-width: 350px;
-    opacity: 0.85;
+    opacity: 1;
     border-style: solid;
     border-width: 3px;
     border-radius: 5px;
