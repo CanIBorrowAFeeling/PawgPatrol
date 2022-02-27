@@ -72,13 +72,16 @@ a.nav-button:visited {
 #sectiontwo {
     background-color: rgb(1, 43, 82);
     color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: auto -10px;
-    padding: 1em auto;
+    padding: 5em auto auto auto;
 }
 
 #prologue-title {
     color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: auto;
+    padding: 1em 0 0 0;
     text-align: center;
 }
 
@@ -89,14 +92,19 @@ a.nav-button:visited {
 }
 
 .prolo-text {
-    padding: 2em;
+    padding: 0em 5em;
     width: 60%;
     
 }
 
-.prolo-img {
+img.prolo-img {
     text-align: center;
     vertical-align: middle;
+}
+
+.prolo-img-div {
+    padding: auto 2em;
+    background-color: black;
 }
 
 #container-one {
@@ -108,11 +116,11 @@ a.nav-button:visited {
     color:rgb(1, 10, 34);
 }
 
-#text-one {
+#text-div-one {
 
 }
 
-#image-one {
+#image-div-one {
     width: 40%;
 }
 
