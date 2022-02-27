@@ -21,11 +21,12 @@ ul {
 }
 
 .nav-bar {
-
+    display: flex;
 }
 
 li {
     display: inline;
+
     padding: 8px;
     border-style: none solid none none;
     border-width: 1px;
@@ -41,12 +42,9 @@ li:hover {
     cursor: pointer;
 }
 
-p.index-link {
-    background-color: ;
-}
-
 a.nav-button {
     text-decoration: none;
+    margin: 0px;
     color: black
 }
 
@@ -70,3 +68,51 @@ a.nav-button:visited {
     border-style: solid none none solid;
     border-width: 1px;
 }
+
+#sectiontwo {
+    background-color: rgb(1, 43, 82);
+    color: white;
+    margin: auto -10px;
+    padding: 1em auto;
+}
+
+#prologue-title {
+    color: white;
+    margin: auto;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+
+}
+
+.prolo-text {
+    padding: 2em;
+    width: 60%;
+    
+}
+
+.prolo-img {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#container-one {
+
+}
+
+#container-two {
+    background-color: white;
+    color:rgb(1, 10, 34);
+}
+
+#text-one {
+
+}
+
+#image-one {
+    width: 40%;
+}
+

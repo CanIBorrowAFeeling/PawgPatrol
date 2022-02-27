@@ -19,7 +19,7 @@ const characterStats = [
         WIS: 9,
         CHR: 12,
         walkSpeed: 40,
-		status: "Raged",
+		status: "",
 		alignment: 'good',
 		image: 'pic-Aug.png'
     },

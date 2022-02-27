@@ -1,4 +1,4 @@
-const formItems = [];
+
 
 class FormItem {
 
@@ -235,6 +235,7 @@ class Character {
         cInitInput.setAttribute('id', `charOrder${this.id}`);
         cInitInput.setAttribute('type', 'number');
         cInitInput.setAttribute('size', '2');
+        cInitInput.setAttribute('onchange', 'updateInitiative()')
         cInitInput.value = this.order;
 
     };
@@ -284,9 +285,7 @@ function selectChar(id, choice) {
 
 // Create game
 
-let charItems = [];
-let round = 1;
-let turn = 1;
+
 
 function playGame() {
 
@@ -346,22 +345,25 @@ function playGame() {
 function cycle() {
 
     let characters = document.querySelectorAll('div.character-box');
-    first = characters[0].style.order;
+    let len = characters.length
 
-    for(let i=1; i<characters.length; i++) {
-        let temp = characters[i].style.order;
-        characters[i].style.order = first;
-        first = temp;
+    let last = characters[len-1].style.order;
+    let temp = -1
+
+    for(let i=0; i < len; i++) {
+        temp = characters[i].style.order;
+        characters[i].style.order = last;
+        last = temp;
+        characters[i].classList.remove('current-char')
     };
 
-    characters[0].style.order = first;
+    characters[0].style.order = last;
 
-    document.getElementById('char-container').children[turn-1].classList.remove('current-char');
-    if(turn < charItems.length) {
-        document.getElementById('char-container').children[turn].classList.add('current-char');
-    } else {
-        document.getElementById('char-container').children[0].classList.add('current-char');
-    };
+    let charArr = Array.prototype.slice.call(characters, 0)
+    charArr.sort(
+        function(a,b) {return b.style.order - a.style.order}
+    )
+    charArr[0].classList.add('current-char')
 
     if(turn < charItems.length) {
         turn += 1;
@@ -380,13 +382,13 @@ function addCharacters() {
         let charDivs = document.getElementById('char-container').childElementCount
 
         for (let i = 0; i < charDivs; i++) {
-            let thisChar = charItems.filter(obj => {return obj.id == i})
-            let divIsKnockedOut = document.getElementById(`char${i}`).classList.contains('knockedout-character')
+            let thisChar = charItems.filter(obj => {return obj.id == i});
+            let divIsKnockedOut = document.getElementById(`char${i}`).classList.contains('knockedout-character');
             thisChar[0].HP = document.getElementById(`charHP${i}`).value;
             thisChar[0].AC = document.getElementById(`charAC${i}`).value;
             thisChar[0].status = document.getElementById(`charStatus${i}`).value;
             thisChar[0].order = document.getElementById(`charOrder${i}`).value;
-            thisChar[0].isKnockedOut = divIsKnockedOut
+            thisChar[0].isKnockedOut = divIsKnockedOut;
         }
 };
 
@@ -394,7 +396,7 @@ function knockout(charID) {
     let div = document.getElementById(`char${charID}`);
     let thisChar = charItems.filter(obj => {return obj.id == charID});
     if( div.classList.contains('knockedout-character') ) {
-        div.classList.remove('knockedout-character')
+        div.classList.remove('knockedout-character');
         thisChar[0].isKnockedOut = false;
     } else {
         div.classList.add('knockedout-character');
@@ -416,3 +418,13 @@ function kill(charID) {
         turn -= 1;
     };
 };
+
+function updateInitiative() {
+    addCharacters();
+    playGame()
+}
+
+const formItems = [];
+const charItems = [];
+let round = 1;
+let turn = 1;

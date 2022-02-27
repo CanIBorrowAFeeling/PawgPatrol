@@ -159,6 +159,7 @@ body {
 
 .character-box {
     background-color: white;
+    clear: both;
     min-width: 350px;
     opacity: 1;
     border-style: solid;
@@ -176,8 +177,8 @@ body {
 }
 
 .character-pic {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 120px;
+    max-height: 120px;
 }
 
 .character-box-right {
