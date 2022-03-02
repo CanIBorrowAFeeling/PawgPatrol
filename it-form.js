@@ -1,5 +1,3 @@
-
-
 class FormItem {
 
     constructor(id) {
@@ -12,7 +10,7 @@ class FormItem {
         let d = this.domElement = document.createElement('div');
         d.classList.add('add-character-box');
         d.setAttribute('id', `form-item${this.id}`);
-        document.getElementById('halfpage-right').appendChild(d);
+        document.getElementById('form-container').appendChild(d);
 
         let firstDiv = d.appendChild(document.createElement('div'));
         firstDiv.setAttribute('class', 'first-form-div');
@@ -235,26 +233,25 @@ class Character {
         cInitInput.setAttribute('id', `charOrder${this.id}`);
         cInitInput.setAttribute('type', 'number');
         cInitInput.setAttribute('size', '2');
-        cInitInput.setAttribute('onchange', 'updateInitiative()')
+        cInitInput.setAttribute('onchange', 'updateOrder()')
         cInitInput.value = this.order;
 
     };
 
 };
 
-function addFormItems() {
-    input = document.getElementById('char-num');
-    x = input.value;
-    current = document.querySelectorAll('div.add-character-box').length;
+function submitFormItems() {
+    let val = document.getElementById('char-num').value;
+    let current = document.querySelectorAll('div.add-character-box').length;
+    let container = document.getElementById('form-container')
 
-    if (current <= x) {
-        for(let i=current; i<x; i++) {
+    if (current <= val) {
+        for(let i=current; i<val; i++) {
             let l = new FormItem(i);
             l.addToPage();
         };
     } else {
-        container = document.getElementById('halfpage-right');
-        for(let i=0; i < (current - x); i++) {
+        for(let i=0; i < (current - val); i++) {
             container.removeChild(container.lastChild);
             formItems.pop();
         };
@@ -265,9 +262,8 @@ function selectChar(id, choice) {
     charName = document.getElementById(`fname-select${id}`).value;
 
     document.getElementById(`fname-input${id}`).value = characterStats[choice].firstName;
-    document.getElementById(`fHP-input${id}`).value = characterStats[choice].currentHP;
-    document.getElementById(`fHPmax-input${id}`).value = characterStats[choice].maxHP;
-    document.getElementById(`fAC${id}`).value = characterStats[choice].AC;
+
+
     document.getElementById(`fstatus-input${id}`).value = characterStats[choice].status;
 
     if (charName != 'none') {
@@ -277,6 +273,9 @@ function selectChar(id, choice) {
     };
 
     if(characterStats[choice].alignment == 'good') {
+        document.getElementById(`fHP-input${id}`).value = characterStats[choice].currentHP;
+        document.getElementById(`fHPmax-input${id}`).value = characterStats[choice].maxHP;
+        document.getElementById(`fAC${id}`).value = characterStats[choice].AC;
         document.getElementById(`sgood${id}`).checked = true;
     } else {
         document.getElementById(`sevil${id}`).checked = true;
@@ -289,16 +288,16 @@ function selectChar(id, choice) {
 
 function playGame() {
 
-    document.getElementById('halfpage-right').style.display = 'none';
-
     currentTurn = turn;
-//    charItems = [];
 
-//    for(let i in formItems) {
-    for (let i = charItems.length; i < formItems.length; i++) {
-        dom = formItems[i].domElement;
+    for (let i = 0; i < formItems.length; i++) {
+        let dom = formItems[i].domElement;
+        let initiative = dom.children[1].children[`finit-input${i}`].value;
+        if (isNaN(initiative) || initiative.length == 0) {
+            continue;
+        };
         const char = {
-            'id': parseInt(formItems[i].id, 0),
+            'id': nextId,
             'name': dom.children[0].children[`fname-input${i}`].value,
             'HP': parseInt(dom.children[0].children[`fHP-input${i}`].value, 0),
             'maxHP': dom.children[0].children[`fHPmax-input${i}`].value,
@@ -317,6 +316,7 @@ function playGame() {
         };
 
         charItems.push(char);
+        nextId += 1;
     };
 
     charItems.sort(
@@ -326,8 +326,8 @@ function playGame() {
     container = document.getElementById('char-container');
     container.innerHTML = '';
 
-    for(let n in charItems) {
-        newChar = new Character(charItems[n]);
+    for(let m in charItems) {
+        newChar = new Character(charItems[m]);
         newChar.addToPage();
     };
 
@@ -340,6 +340,10 @@ function playGame() {
         cycle();
     };
 
+    // Clear form
+    document.getElementById('halfpage-right').style.display = 'none';
+    document.getElementById('form-container').innerHTML = '';
+    formItems = [];
 };
 
 function cycle() {
@@ -359,11 +363,7 @@ function cycle() {
 
     characters[0].style.order = last;
 
-    let charArr = Array.prototype.slice.call(characters, 0)
-    charArr.sort(
-        function(a,b) {return b.style.order - a.style.order}
-    )
-    charArr[0].classList.add('current-char')
+    updateCurrentChar();
 
     if(turn < charItems.length) {
         turn += 1;
@@ -377,19 +377,45 @@ function cycle() {
 
 };
 
-function addCharacters() {
-        document.getElementById('halfpage-right').style.display = '';
-        let charDivs = document.getElementById('char-container').childElementCount
+function updateCharList() {
+    let charDivs = document.getElementById('char-container').childElementCount
 
-        for (let i = 0; i < charDivs; i++) {
-            let thisChar = charItems.filter(obj => {return obj.id == i});
-            let divIsKnockedOut = document.getElementById(`char${i}`).classList.contains('knockedout-character');
-            thisChar[0].HP = document.getElementById(`charHP${i}`).value;
-            thisChar[0].AC = document.getElementById(`charAC${i}`).value;
-            thisChar[0].status = document.getElementById(`charStatus${i}`).value;
-            thisChar[0].order = document.getElementById(`charOrder${i}`).value;
-            thisChar[0].isKnockedOut = divIsKnockedOut;
-        }
+    for (let i = 0; i < charDivs; i++) {
+        x = charItems[i].id;
+        let thisChar = charItems.filter(obj => {return obj.id == x});
+        let divIsKnockedOut = document.getElementById(`char${x}`).classList.contains('knockedout-character');
+        thisChar[0].HP = document.getElementById(`charHP${x}`).value;
+        thisChar[0].AC = document.getElementById(`charAC${x}`).value;
+        thisChar[0].status = document.getElementById(`charStatus${x}`).value;
+        thisChar[0].order = document.getElementById(`charOrder${x}`).value;
+        thisChar[0].isKnockedOut = divIsKnockedOut;
+    };
+};
+
+function addCharacters() {
+    
+    document.getElementById('halfpage-right').style.display = '';
+
+    updateCharList();
+
+};
+
+
+function updateOrder() {
+    updateCharList();
+    playGame();
+};
+
+function updateCurrentChar() {
+    let charactersToUpdate = document.querySelectorAll('div.character-box');
+    let arrayToUpdate = Array.prototype.slice.call(charactersToUpdate, 0)
+    arrayToUpdate.sort(
+        function(a,b) {return b.style.order - a.style.order}
+    );
+    
+    if (!arrayToUpdate[0].classList.contains('current-char')) {
+        arrayToUpdate[0].classList.add('current-char') 
+    };
 };
 
 function knockout(charID) {
@@ -419,12 +445,8 @@ function kill(charID) {
     };
 };
 
-function updateInitiative() {
-    addCharacters();
-    playGame()
-}
-
-const formItems = [];
+let formItems = [];
 const charItems = [];
 let round = 1;
 let turn = 1;
+let nextId = 0;

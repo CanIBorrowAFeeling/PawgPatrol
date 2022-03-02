@@ -47,11 +47,13 @@
 	<div id="halfpage-right">
 		<div id="form-header">
 			<div id="char-num-box">
-				<label id="char-num-label" for="char-num">Characters: </label><input id="char-num" type="number" size="2">
+				<label id="char-num-label" for="char-num">Characters: </label><input id="char-num" type="number" size="2" width="20">
+				<input type="button" id="form-submit-button" class="smooth" onclick="submitFormItems()" value="Submit">
 			</div>
-			<input type="button" id="form-submit-button" class="smooth" onclick="addFormItems()" value="Submit"><br/>
+
 			<input type="button" id="lets-play-button" class="smooth" onclick="playGame()" value="Let's Play!"><br/>
 		</div>
+		<div id="form-container"></div>
 	</div>
 
 </div>

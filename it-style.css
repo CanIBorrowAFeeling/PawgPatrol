@@ -20,6 +20,7 @@ body {
 }
 
 #halfpage-right {
+    display: "";
     min-width: 300px;
     padding: 10px 30px 10px 20px;
     margin: auto -30px auto 0px;
@@ -49,9 +50,9 @@ body {
 
 #form-submit-button {
     background-color: #00c3ff;
-    width: 50%;
+    width: 5em;
     color: white;
-    margin: auto auto 5px auto;
+    margin: 1em;
     padding: 10px;
     display: inline-block;
     font-weight: bold;
