@@ -26,11 +26,11 @@ ul {
 
 li {
     display: inline;
-
     padding: 8px;
     border-style: none solid none none;
     border-width: 1px;
     border-color: #8bb3fc;
+    margin: 0px;
 }
 
 #first-nav-button {

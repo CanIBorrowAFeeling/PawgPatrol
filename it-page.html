@@ -8,22 +8,19 @@
 
 </head>
 
-<body>
-
 <header>
 	<div class="banner" id="banner-homepage">
 
 		<h2 id="title"><a class="nav-button" href="index.html">Knights of Fairewey</a></h2>
 
         <ul class="nav-bar">
-
-            <li id="first-nav-button"><a class="nav-button" href="it-page.html">Initiative Tracker</a></li>
-            <li><a class="nav-button" href="docdice.html">Dockside Dice</a></li>
+            <a class="nav-button" href="it-page.html"><li id="first-nav-button">Initiative Tracker</li></a>
+            <a class="nav-button" href="docdice.html"><li>Dockside Dice</li></a>
         </ul>
 
     </div>
 </header>
-
+<body>
 <div class="halfpage">
 
 	<div id="halfpage-left">
@@ -45,6 +42,7 @@
 	</div>
 
 	<div id="halfpage-right">
+		
 		<div id="form-header">
 			<div id="char-num-box">
 				<label id="char-num-label" for="char-num">Characters: </label><input id="char-num" type="number" size="2" width="20">
@@ -53,7 +51,9 @@
 
 			<input type="button" id="lets-play-button" class="smooth" onclick="playGame()" value="Let's Play!"><br/>
 		</div>
+
 		<div id="form-container"></div>
+
 	</div>
 
 </div>

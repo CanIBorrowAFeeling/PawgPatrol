@@ -194,9 +194,6 @@ function playSlots() {
 	} else if (points == 30) {
 		resultText.innerHTML = "three stars";
 		currBankroll += bet * 3;
-	} else if (points >= 200) {
-		resultText.innerHTML = "some coins";
-		currBankroll += bet * 2;
 	} else if (points == 3) {
 		resultText.innerHTML = "three anchors";
 		currBankroll += bet * 3;
