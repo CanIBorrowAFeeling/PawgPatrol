@@ -1,6 +1,8 @@
+
+
 function enterBankroll() {
 	let initialBankroll = parseInt(document.getElementById("bankroll").value);
-	document.getElementById("currentBankroll").innerHTML = initialBankroll;
+	document.getElementById("current-bankroll").innerHTML = initialBankroll;
 }
 
 function rand(m, n) {
@@ -42,9 +44,9 @@ function playCAA() {
 		}
 	}
 
-	let currentBankrollCAA = parseInt(document.getElementById("currentBankroll").innerHTML);
+	let currentBankrollCAA = parseInt(document.getElementById("current-bankroll").innerHTML);
 	if (currentBankrollCAA < totalBetCAA) {
-		alert("Not enough funds!");
+		alert("You don't have that much money! Don't play with money you don't have!");
 		return
 }
 
@@ -89,7 +91,7 @@ function playCAA() {
 		document.getElementById("CAAresult2").innerHTML = "You broke even";
 	}
 	document.getElementById("CAAresult3").innerHTML = `Net gain: ${netWinningsCAA}g`;
-	document.getElementById("currentBankroll").innerHTML = currentBankrollCAA;
+	document.getElementById("current-bankroll").innerHTML = currentBankrollCAA;
 }
 
 function dragonDiceRolls_Player() {
@@ -113,12 +115,12 @@ function dragonDiceRolls_Bank() {
 }
 
 function playDragonDice() {
-	let currentBankrollDD = parseInt(document.getElementById("currentBankroll").innerHTML);
+	let currentBankrollDD = parseInt(document.getElementById("current-bankroll").innerHTML);
 	let playerBetDD = parseInt(document.getElementById("DDBet").value);
 	if (currentBankrollDD < playerBetDD) {
-		alert("Not enough funds!");
+		alert("Not enough gold you dirty penceless street wench!");
 		return
-}
+	}
 	currentBankrollDD = currentBankrollDD - playerBetDD;
 
 	winningsDD = 0;
@@ -144,6 +146,74 @@ function playDragonDice() {
 
 	document.getElementById("DDResult1").innerHTML = displayResultText;
 	document.getElementById("DDResult2").innerHTML = displayWinnerText;
-	document.getElementById("currentBankroll").innerHTML = currentBankrollDD;
+	document.getElementById("current-bankroll").innerHTML = currentBankrollDD;
 	
 }
+
+function playSlots() {
+	let currBankroll = parseInt(document.getElementById("current-bankroll").innerHTML);
+	let bet = document.getElementById('slots-bet-value').value;
+	let slotgold = document.getElementById("slot-gold");
+	let resultText = document.getElementById("slot-p1");
+	slotgold.innerHTML = currBankroll;
+
+
+	if (currBankroll < bet) {
+		alert("Yore outta gold! Hit the bricks you toothless no good, stinkin, wire-eyed, bottom-lipped, tar-brained, half less good fer nuthing half drow, monkeyspanked, slime haired, gingerbread, spargeltarzan hosensheisser, lime-eared, buck-arsed, fleece-wearin', gnome-associatin', jingleberry!!!");
+		return 0;
+	};
+	
+	currBankroll = currBankroll - bet;
+
+	let slotResult = [];
+	let points = 0
+
+	// Randomize and select slot results, sum points
+	for (let i in reels) {
+		let x = Math.floor(Math.random() * reels[i].length);
+		slotResult.push(reels[i][x].img);
+		points = points + reels[i][x].value;
+	};
+	console.log(`points is = ${points}`);
+	// Determine points and distribute prizes
+	if (points == 3000) {
+		resultText.innerHTML = "three chtulus!!!!!! jackpot baby";
+		currBankroll += bet * 20;
+	} else if (points >= 2000) {
+		resultText.innerHTML = "two chtulus!!!";
+		currBankroll += bet * 10;
+	} else if (points == 1200) {
+		resultText.innerHTML = "two coins with cthulu";
+		currBankroll += bet * 5;
+	} else if (points >= 1000) {
+		resultText.innerHTML = "one chtulhu";
+		currBankroll += bet * 2;
+	} else if (points == 300) {
+		resultText.innerHTML = "three coins";
+		currBankroll += bet * 5;
+	} else if (points == 30) {
+		resultText.innerHTML = "three stars";
+		currBankroll += bet * 3;
+	} else if (points >= 200) {
+		resultText.innerHTML = "some coins";
+		currBankroll += bet * 2;
+	} else if (points == 3) {
+		resultText.innerHTML = "three anchors";
+		currBankroll += bet * 3;
+	} else {
+		resultText.innerHTML = "Bummer";
+	}
+
+
+	// Update page divs with images
+	for (let i = 0; i < 3; i++) {
+		document.getElementById(`slot-image${i+1}`).setAttribute('src', `files/slotimages/${slotResult[i]}`);
+	};
+
+	// Update bankroll
+	document.getElementById("current-bankroll").innerHTML = currBankroll;
+	console.log(points, currBankroll);
+	slotgold.innerHTML = currBankroll
+
+}
+

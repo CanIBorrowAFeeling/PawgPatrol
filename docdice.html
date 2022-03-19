@@ -5,8 +5,10 @@
 	<title>Dockside Dice</title>
 	<link rel="stylesheet" href="docdice-style.css">
 	<link rel="stylesheet" href="index-style.css">
+	<script src="scripts/slotreels.js"></script>
 	<script src="scripts/DocksideDiceGames.js"></script>
 </head>
+
 <header>
 	<div class="banner" id="banner-homepage">
 
@@ -14,20 +16,21 @@
 
         <ul class="nav-bar">
 
-            <li id="first-nav-button"><a class="nav-button" href="it-page.html">Initiative Tracker</a></li>
-            <li><a class="nav-button" href="docdice.html">Dockside Dice</a></li>
+            <a class="nav-button" href="it-page.html"><li id="first-nav-button">Initiative Tracker</li></a>
+            <a class="nav-button" href="docdice.html"><li>Dockside Dice</li></a>
         </ul>
 
     </div>
 </header>
+
 <body onload="document.bankrollForm.reset(); document.CAAform.reset(); document.DragonDiceBet.reset()">
 
-	<div id="beginGambling">
+	<div id="bankroll-banner">
 		<form id="bankrollForm" name="bankrollForm" action="#">
 			<label for="bankroll">Choose a bankroll:  <input id="bankroll" type="number" value="0"></label>
 			<input type="button" id="bankrollButton" onclick="enterBankroll()" value="submit">
 		</form>
-		<p id="bankrollText">Current Bankroll: <span id="currentBankroll">0</span>g</p>
+		<p id="bankrollText">Current Bankroll: <span id="current-bankroll">0</span>g</p>
 	</div>
 	<div class="game" id="CrownAndAnchor">
 		<h2>Crown and Anchor</h2>
@@ -59,12 +62,34 @@ You get double your bet if your face hits. More if it hits more times!</p>
 		<label for="DDBet">
 			<input id="DDBet" type="number" value="0">  Place your bet
 		</label><br/>
-		<input type="button" id="DDButton" name="DDButton" onclick="playDragonDice()" value="submit">
+		<input type="button" class="ddbutton" id="DDButton" name="DDButton" onclick="playDragonDice()" value="submit">
 	</form>
 		<div id="DDresultLines">
 			<p id="DDResult1"></p>
 			<p id="DDResult2"></p>
 		</div>
+	</div>
+
+	<div class="game" id="slots-div">
+		<h2>Red Hot Slots</h2>
+		<p class="rules">Put your money in and pull the lever</p>
+		<div id="slots-game-board">
+			<div id="slot-image-reel">
+				<div class="slot-image-div" id="slot-image-div1"><img class="slot-image" id="slot-image1" src="files/slotimages/anchor.png"></div>
+				<div class="slot-image-div" id="slot-image-div2"><img class="slot-image" id="slot-image2" src="files/slotimages/anchor.png"></div>
+				<div class="slot-image-div" id="slot-image-div3"><img class="slot-image" id="slot-image3" src="files/slotimages/anchor.png"></div>
+			</div>
+			<div id="slot-lever-div">
+				Bet: <input id="slots-bet-value" type="number" value="0" size="4">
+				<input type="button" class="ddbutton" onclick="playSlots()" value="Pull">
+			</div>
+		</div>
+
+		<div>
+			<p id="slot-p1"></p>
+			<p id="slot-p2">Current gold: <span id="slot-gold"></span></p>
+		</div>
+
 	</div>
 
 </body>

@@ -1,7 +1,6 @@
 /* Styles go here */
 body {
 	background-color: #900c3f/*6ea9c8*/;
-	background-image: url('files/redDragon.png');
 	background-repeat: no-repeat;
 	font-family: Calibri;
 }
@@ -12,18 +11,8 @@ h1 {
 	color: black;
 }
 
-h2 {
+#title {
 	text-align: left;
-	padding: 8px 0px 2px 8px;
-}
-
-.main-banner {
-	background: #900c3f;
-	width: 110%;
-	padding: 50px 25px 0px 50px;
-	margin: 0px 0px -40px -30px;
-	position: relative;
-	top: -60px;
 }
 
 .rules {
@@ -51,9 +40,12 @@ div.inline {
 	padding-left: 20px;
 }
 
-div#BankrollBanner {
+#bankroll-banner {
+	background-color: white;
+	border: solid;
+	padding: 1em;
 	position: static;
-	
+	width: 40em;
 }
 
 #CrownAndAnchor {
@@ -74,4 +66,42 @@ div#BankrollBanner {
 
 #bankrollText {
 	font-style: bold;
+}
+
+#slots-div {
+	display: grid;
+	grid-template-areas: "board display";
+}
+
+#slots-game-board {
+	background-color: blueviolet;
+	grid-area: "board";
+}
+
+#slot-image-reel {
+	background-color: aqua;
+	border: solid;
+	border-color: gold;
+	border-width: 5px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr; 
+	width: 30em;
+}
+
+.slot-image-div {
+	background: orange;
+	height: 8em;
+	width: 8em;
+	margin: 1px;
+	
+}
+
+#slot-lever-div {
+	background-color: bisque;
+
+}
+
+.slot-image {
+	height: 8em;
+	width: 8em;
 }
