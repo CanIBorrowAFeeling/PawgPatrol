@@ -177,26 +177,26 @@ function playSlots() {
 	console.log(`points is = ${points}`);
 	// Determine points and distribute prizes
 	if (points == 3000) {
-		resultText.innerHTML = "three chtulus!!!!!! jackpot baby";
+		resultText.innerHTML = `three chtulus!!!!!! jackpot baby: + ${bet * 20}`;
 		currBankroll += bet * 20;
 	} else if (points >= 2000) {
-		resultText.innerHTML = "two chtulus!!!";
+		resultText.innerHTML = `two chtulus!!!: + ${bet * 10}`;
 		currBankroll += bet * 10;
 	} else if (points == 1200) {
-		resultText.innerHTML = "two coins with cthulu";
+		resultText.innerHTML = `two coins with cthulu: + ${bet * 5}`;
 		currBankroll += bet * 5;
 	} else if (points >= 1000) {
-		resultText.innerHTML = "one chtulhu";
+		resultText.innerHTML = `one chtulhu: + ${bet * 2}`;
 		currBankroll += bet * 2;
 	} else if (points == 300) {
-		resultText.innerHTML = "three coins";
+		resultText.innerHTML = `Three coins: + ${bet * 5}`;
 		currBankroll += bet * 5;
 	} else if (points == 30) {
-		resultText.innerHTML = "three stars";
+		resultText.innerHTML = `three stars: + ${bet * 3}`;
 		currBankroll += bet * 3;
 	} else if (points == 3) {
-		resultText.innerHTML = "three anchors";
-		currBankroll += bet * 3;
+		resultText.innerHTML = `three anchors: + ${bet * 2}`;
+		currBankroll += bet * 2;
 	} else {
 		resultText.innerHTML = "Bummer";
 	}
