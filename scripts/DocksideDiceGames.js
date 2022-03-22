@@ -160,7 +160,6 @@ function playSlots() {
 
 	resultText.innerHTML = "~Spinning~"
 
-
 	if (currBankroll < bet) {
 		alert("Yore outta gold! Hit the bricks you toothless no good, stinkin, wire-eyed, bottom-lipped, tar-brained, half less good fer nuthing half drow, monkeyspanked, slime haired, gingerbread, spargeltarzan hosensheisser, lime-eared, buck-arsed, fleece-wearin', gnome-associatin', jingleberry!!!");
 		return 0;
@@ -178,54 +177,59 @@ function playSlots() {
 		points = points + reels[i][x].value;
 	};
 
-	// Spinning the reels
-/* This needs to be done with async, setInterval, and clear Interval
-	for (let i = 0; i < 5; i++) {
-		(function() {
-			setTimeout( () => {
-			document.getElementById('slot-image1').setAttribute('src', `files/slotimages/${reels[0][Math.floor(Math.random() * reels[0].length)].img}`);
-			document.getElementById('slot-image2').setAttribute('src', `files/slotimages/${reels[1][Math.floor(Math.random() * reels[1].length)].img}`);
-			document.getElementById('slot-image3').setAttribute('src', `files/slotimages/${reels[2][Math.floor(Math.random() * reels[2].length)].img}`);
-			console.log(i);
-		}, 500);
-		})
-	}
-*/
 	// Determine points and distribute prizes
-	if (points == 3000) {
-		resultText.innerHTML = `three chtulus!!!!!! jackpot baby: + ${bet * 20}`;
-		currBankroll += bet * 20;
-	} else if (points >= 2000) {
-		resultText.innerHTML = `two chtulus!!!: + ${bet * 10 - bet}`;
-		currBankroll += bet * 10;
-	} else if (points == 1200) {
-		resultText.innerHTML = `two coins with cthulu: + ${bet * 5 - bet}`;
-		currBankroll += bet * 5;
-	} else if (points >= 1000) {
-		resultText.innerHTML = `one chtulhu: + ${bet * 2 - bet}`;
-		currBankroll += bet * 2;
-	} else if (points == 300) {
-		resultText.innerHTML = `Three coins: + ${bet * 5 - bet}`;
-		currBankroll += bet * 5;
-	} else if (points == 30) {
-		resultText.innerHTML = `three stars: + ${bet * 3 - bet}`;
-		currBankroll += bet * 3;
-	} else if (points == 3) {
-		resultText.innerHTML = `three anchors: + ${bet * 2 - bet}`;
-		currBankroll += bet * 2;
-	} else {
-		resultText.innerHTML = "Bummer";
+	function slotGameResults() {
+		if (points == 3000) {
+			resultText.innerHTML = `three chtulus!!!!!! jackpot baby: + ${bet * 20 - bet}`;
+			currBankroll += bet * 20;
+		} else if (points >= 2000) {
+			resultText.innerHTML = `two chtulus!!!: + ${bet * 15 - bet}`;
+			currBankroll += bet * 15;
+		} else if (points == 1200) {
+			resultText.innerHTML = `two coins with cthulu: + ${bet * 10 - bet}`;
+			currBankroll += bet * 10;
+		} else if (points == 300) {
+			resultText.innerHTML = `Three coins: + ${bet * 10 - bet}`;
+			currBankroll += bet * 5;
+		} else if (points >= 200 && points < 300 || (points - 1000) >= 200) {
+			resultText.innerHTML = `Two coins: + ${bet * 4 - bet}`;
+			currBankroll += bet * 4;
+		} else if (points == 30) {
+			resultText.innerHTML = `three stars: + ${bet * 5 - bet}`;
+			currBankroll += bet * 5;
+		} else if (points == 3) {
+			resultText.innerHTML = `three anchors: + ${bet * 3 - bet}`;
+			currBankroll += bet * 3;
+		} else {
+			resultText.innerHTML = "Bummer";
+		}
+
+
+		// Update page divs with images
+		for (let i = 0; i < 3; i++) {
+			document.getElementById(`slot-image${i+1}`).setAttribute('src', `files/slotimages/${slotResult[i]}`);
+		};
+
+		// Update bankroll
+		document.getElementById("current-bankroll").innerHTML = currBankroll;
+		slotgold.innerHTML = currBankroll;
 	}
 
+	// Spinning the reels
+	let intervalID = setInterval(flashReels, 50);
 
-	// Update page divs with images
-	for (let i = 0; i < 3; i++) {
-		document.getElementById(`slot-image${i+1}`).setAttribute('src', `files/slotimages/${slotResult[i]}`);
-	};
+	function flashReels() {
+		document.getElementById('slot-image1').setAttribute('src', `files/slotimages/${reels[0][Math.floor(Math.random() * reels[0].length)].img}`);
+		document.getElementById('slot-image2').setAttribute('src', `files/slotimages/${reels[1][Math.floor(Math.random() * reels[1].length)].img}`);
+		document.getElementById('slot-image3').setAttribute('src', `files/slotimages/${reels[2][Math.floor(Math.random() * reels[2].length)].img}`);
+	}
 
-	// Update bankroll
-	document.getElementById("current-bankroll").innerHTML = currBankroll;
-	slotgold.innerHTML = currBankroll
+	const timeoutID = setTimeout( () => {
+		clearInterval(intervalID);
+		intervalID = null;
+		slotGameResults();
+	}, 1000);
+
 
 }
 
