@@ -15,14 +15,27 @@ h1 {
 	text-align: left;
 }
 
+#games {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
 .rules {
 	width: 90%;
+}
+
+.game-button {
+	border-style: none;
+	background-color: burlywood;
+	color: navy;
+	margin: 1em;
+	padding: 0.5em 2em;
 }
 
 .game {
 	font-family: Calibri;
 	color: black;
-	margin: 20px 0px 20px -30px;
+	margin: 20px 10px 20px 10px;
 	padding: 0px 0px 20px 35px;
 	width: 75%;
 	min-width: 500px;
@@ -32,6 +45,10 @@ h1 {
 	border-color: black;
 	border-width: 5px;
 	border-radius: 20px;
+}
+
+.input-field {
+	width: 3rem;
 }
 
 div.inline {
@@ -49,10 +66,12 @@ div.inline {
 }
 
 #CrownAndAnchor {
-	min-height: 300px;
+	background-color: rgb(23, 161, 60);
+	height: 300px;
 }
 
 #DragonDice {
+	background-color: rgb(23, 161, 60);
 	height: 250px;
 }
 
@@ -69,35 +88,37 @@ div.inline {
 }
 
 #slots-div {
-	display: grid;
-	grid-template-areas: "board display";
+	height: 23em;
 }
 
 #slots-game-board {
-	background-color: blueviolet;
+	background-color: gold;
 	grid-area: "board";
 }
 
 #slot-image-reel {
-	background-color: aqua;
+	background-color: black;
 	border: solid;
-	border-color: gold;
+	border-color: navy;
+	border-radius: 5px;
 	border-width: 5px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr; 
-	width: 30em;
+	padding: 2px;
+	width: 25em;
 }
 
 .slot-image-div {
 	background: orange;
+	border-style: none solid;
+	border-width: 1px;
 	height: 8em;
 	width: 8em;
-	margin: 1px;
-	
+	margin: 0 auto;
+	text-align: center;
 }
 
 #slot-lever-div {
-	background-color: bisque;
 
 }
 
