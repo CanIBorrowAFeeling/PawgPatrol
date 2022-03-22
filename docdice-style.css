@@ -16,8 +16,9 @@ h1 {
 }
 
 #games {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .rules {
@@ -37,7 +38,7 @@ h1 {
 	color: black;
 	margin: 20px 10px 20px 10px;
 	padding: 0px 0px 20px 35px;
-	width: 75%;
+
 	min-width: 500px;
 	max-width: 850px;
 	background-color: gold;
@@ -45,6 +46,7 @@ h1 {
 	border-color: black;
 	border-width: 5px;
 	border-radius: 20px;
+	max-width: 20em;
 }
 
 .input-field {
