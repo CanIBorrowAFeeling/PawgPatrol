@@ -158,12 +158,12 @@ function playSlots() {
 	let resultText = document.getElementById("slot-p1");
 	slotgold.innerHTML = currBankroll;
 
-	resultText.innerHTML = "~Spinning~"
-
 	if (currBankroll < bet) {
 		alert("Yore outta gold! Hit the bricks you toothless no good, stinkin, wire-eyed, bottom-lipped, tar-brained, half less good fer nuthing half drow, monkeyspanked, slime haired, gingerbread, spargeltarzan hosensheisser, lime-eared, buck-arsed, fleece-wearin', gnome-associatin', jingleberry!!!");
 		return 0;
 	};
+
+	resultText.innerHTML = "~Spinning~"
 	
 	currBankroll = currBankroll - bet;
 
@@ -180,13 +180,13 @@ function playSlots() {
 	// Determine points and distribute prizes
 	function slotGameResults() {
 		if (points == 3000) {
-			resultText.innerHTML = `three chtulus!!!!!! jackpot baby: + ${bet * 20 - bet}`;
-			currBankroll += bet * 20;
+			resultText.innerHTML = `THREE CTHULHUS!!!!!! JACKPOT!!!!!: + ${bet * 50 - bet}!!!`;
+			currBankroll += bet * 50;
 		} else if (points >= 2000) {
-			resultText.innerHTML = `two chtulus!!!: + ${bet * 15 - bet}`;
+			resultText.innerHTML = `Two Cthulhus!!!: + ${bet * 15 - bet}`;
 			currBankroll += bet * 15;
 		} else if (points == 1200) {
-			resultText.innerHTML = `two coins with cthulu: + ${bet * 10 - bet}`;
+			resultText.innerHTML = `Two coins with Cthulhu!: + ${bet * 10 - bet}`;
 			currBankroll += bet * 10;
 		} else if (points == 300) {
 			resultText.innerHTML = `Three coins: + ${bet * 10 - bet}`;
@@ -195,13 +195,13 @@ function playSlots() {
 			resultText.innerHTML = `Two coins: + ${bet * 4 - bet}`;
 			currBankroll += bet * 4;
 		} else if (points == 30) {
-			resultText.innerHTML = `three stars: + ${bet * 5 - bet}`;
-			currBankroll += bet * 5;
+			resultText.innerHTML = `Three stars: + ${bet * 8 - bet}`;
+			currBankroll += bet * 8;
 		} else if (points == 3) {
-			resultText.innerHTML = `three anchors: + ${bet * 3 - bet}`;
+			resultText.innerHTML = `Three anchors: + ${bet * 3 - bet}`;
 			currBankroll += bet * 3;
 		} else {
-			resultText.innerHTML = "Bummer";
+			resultText.innerHTML = "Bummer...";
 		}
 
 
