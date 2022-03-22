@@ -151,11 +151,14 @@ function playDragonDice() {
 }
 
 function playSlots() {
+
 	let currBankroll = parseInt(document.getElementById("current-bankroll").innerHTML);
 	let bet = document.getElementById('slots-bet-value').value;
 	let slotgold = document.getElementById("slot-gold");
 	let resultText = document.getElementById("slot-p1");
 	slotgold.innerHTML = currBankroll;
+
+	resultText.innerHTML = "~Spinning~"
 
 
 	if (currBankroll < bet) {
@@ -174,28 +177,41 @@ function playSlots() {
 		slotResult.push(reels[i][x].img);
 		points = points + reels[i][x].value;
 	};
-	console.log(`points is = ${points}`);
+
+	// Spinning the reels
+/* This needs to be done with async, setInterval, and clear Interval
+	for (let i = 0; i < 5; i++) {
+		(function() {
+			setTimeout( () => {
+			document.getElementById('slot-image1').setAttribute('src', `files/slotimages/${reels[0][Math.floor(Math.random() * reels[0].length)].img}`);
+			document.getElementById('slot-image2').setAttribute('src', `files/slotimages/${reels[1][Math.floor(Math.random() * reels[1].length)].img}`);
+			document.getElementById('slot-image3').setAttribute('src', `files/slotimages/${reels[2][Math.floor(Math.random() * reels[2].length)].img}`);
+			console.log(i);
+		}, 500);
+		})
+	}
+*/
 	// Determine points and distribute prizes
 	if (points == 3000) {
 		resultText.innerHTML = `three chtulus!!!!!! jackpot baby: + ${bet * 20}`;
 		currBankroll += bet * 20;
 	} else if (points >= 2000) {
-		resultText.innerHTML = `two chtulus!!!: + ${bet * 10}`;
+		resultText.innerHTML = `two chtulus!!!: + ${bet * 10 - bet}`;
 		currBankroll += bet * 10;
 	} else if (points == 1200) {
-		resultText.innerHTML = `two coins with cthulu: + ${bet * 5}`;
+		resultText.innerHTML = `two coins with cthulu: + ${bet * 5 - bet}`;
 		currBankroll += bet * 5;
 	} else if (points >= 1000) {
-		resultText.innerHTML = `one chtulhu: + ${bet * 2}`;
+		resultText.innerHTML = `one chtulhu: + ${bet * 2 - bet}`;
 		currBankroll += bet * 2;
 	} else if (points == 300) {
-		resultText.innerHTML = `Three coins: + ${bet * 5}`;
+		resultText.innerHTML = `Three coins: + ${bet * 5 - bet}`;
 		currBankroll += bet * 5;
 	} else if (points == 30) {
-		resultText.innerHTML = `three stars: + ${bet * 3}`;
+		resultText.innerHTML = `three stars: + ${bet * 3 - bet}`;
 		currBankroll += bet * 3;
 	} else if (points == 3) {
-		resultText.innerHTML = `three anchors: + ${bet * 2}`;
+		resultText.innerHTML = `three anchors: + ${bet * 2 - bet}`;
 		currBankroll += bet * 2;
 	} else {
 		resultText.innerHTML = "Bummer";
@@ -209,7 +225,6 @@ function playSlots() {
 
 	// Update bankroll
 	document.getElementById("current-bankroll").innerHTML = currBankroll;
-	console.log(points, currBankroll);
 	slotgold.innerHTML = currBankroll
 
 }

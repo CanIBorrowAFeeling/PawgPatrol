@@ -136,7 +136,7 @@ class Character {
         let charDiv = this.domElement = document.createElement('div');
         charDiv.setAttribute('id', `char${this.id}`);
         charDiv.setAttribute('class', `character-box`);
-        charDiv.style.order = ( (100 - this.order) * 10 )+ this.id;
+        charDiv.style.order = ( (100 - this.order) * 100 ) + this.id;
         document.getElementById('char-container').appendChild(charDiv);
 
         if (this.alignment == 'evil') {
@@ -337,7 +337,9 @@ function submitCharForm() {
     document.getElementById('turn-counter').innerHTML = 'Turn 1';
 
 
-    container.firstElementChild.classList.add('current-char');
+    if (container.hasChildNodes()) {
+        container.firstElementChild.classList.add('current-char');
+    }
 
     // cycle to current turn
     turn = 1;
@@ -383,7 +385,7 @@ function cycle() {
 };
 
 function updateCharList() {
-
+    // There is an issue with a glitch occuring when updating order 
     charItems.forEach( function(item) {
         let x = item.id;
         let thisChar = charItems.filter(obj => {return obj.id == x});
@@ -419,7 +421,7 @@ function updateCurrentChar() {
 
 function knockout(charID) {
     let div = document.getElementById(`char${charID}`);
-    let thisChar = charItems.filter(obj => {return obj.id == `char${charID}`});
+    let thisChar = charItems.filter(obj => {return obj.id == charID });
     if( div.classList.contains('knockedout-character') ) {
         div.classList.remove('knockedout-character');
         thisChar[0].isKnockedOut = false;
@@ -435,8 +437,8 @@ function kill(charID) {
     div.parentNode.removeChild(div);
 
     // Remove character from js array
-    let x = charItems.findIndex(charItem => charItem.id == `char${charID}`);
-    charItems.pop(x);
+    let x = charItems.findIndex(charItem => charItem.id == charID);
+    console.log(charItems.splice(x,1));
     
     // Correct turn counter if needed
     if(turn > charItems.length) {

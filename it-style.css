@@ -166,10 +166,10 @@ body {
     min-width: 350px;
     opacity: 1;
     border-style: solid;
-    border-width: 1px 2px;
+    border-width: 2px 2px;
     border-radius: 5px;
     border-color: #00F;
-    margin: 0;
+    margin: 1px 0px 0px 0px;
     display: flex;
     flex-direction: row;
 }
