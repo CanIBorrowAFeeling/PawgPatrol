@@ -75,6 +75,8 @@ const reels = [
     [
         {img: "cthulhu.jpg", value: 1000},
         {img: "coinhead.jpg", value: 100},
+        {img: "coinhead.jpg", value: 100},
+        {img: "coinhead.jpg", value: 100},
         {img: "star.png", value: 10},
         {img: "star.png", value: 10},
         {img: "star.png", value: 10},
@@ -84,6 +86,9 @@ const reels = [
         {img: "anchor.png", value: 1},
         {img: "anchor.png", value: 1},
         {img: "anchor.png", value: 1},
+        {img: "crashedship.jpg", value: 0},
+        {img: "crashedship.jpg", value: 0},
+        {img: "crashedship.jpg", value: 0},
         {img: "crashedship.jpg", value: 0}
     ],
     [
@@ -101,6 +106,9 @@ const reels = [
         {img: "anchor.png", value: 1},
         {img: "anchor.png", value: 1},
         {img: "anchor.png", value: 1},
+        {img: "crashedship.jpg", value: 0},
+        {img: "crashedship.jpg", value: 0},
+        {img: "crashedship.jpg", value: 0},
         {img: "crashedship.jpg", value: 0}
     ],
     [
@@ -108,6 +116,8 @@ const reels = [
         {img: "coinhead.jpg", value: 100},
         {img: "coinhead.jpg", value: 100},
         {img: "coinhead.jpg", value: 100},
+        {img: "coinhead.jpg", value: 100},
+        {img: "coinhead.jpg", value: 100},
         {img: "star.png", value: 10},
         {img: "star.png", value: 10},
         {img: "star.png", value: 10},
@@ -117,6 +127,9 @@ const reels = [
         {img: "anchor.png", value: 1},
         {img: "anchor.png", value: 1},
         {img: "anchor.png", value: 1},
+        {img: "crashedship.jpg", value: 0},
+        {img: "crashedship.jpg", value: 0},
+        {img: "crashedship.jpg", value: 0},
         {img: "crashedship.jpg", value: 0}
     ]
 ]
